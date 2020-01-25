@@ -11,7 +11,7 @@ Note: not all the code is commented, it's will be done in the near future.
 
 Example figures: 
 
-|![VideoBlocks](images/gmm_25.png)|![VideoBlocks](images/gmm_2.png)|
+![VideoBlocks](images/gmm_25.png) ![VideoBlocks](images/gmm_2.png)
 
 The left figure presents an example of real data and data generated using the MD-GAN D using the Gaussian mixture model with 25 and the right figure presents both the real data and generated data using MD-GAN while using the Gaussian mixture model with two centers.   
 # Contributing
