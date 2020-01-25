@@ -19,6 +19,14 @@ def load_db(num_data: int = 10000, standard_deviation: float = 0.05, max_point=5
     return generate_2d_gmm(num_data, mu_vector, variance)
 
 
+def load_mixture_of_two_gaussian(num_data: int = 10000, standard_deviation: float = 0.05, point_a=5, point_b=-5):
+    mu_vector = np.zeros(2, 2)
+    mu_vector[0, :] = point_a
+    mu_vector[1, :] = point_b
+    variance = (standard_deviation ** 2) * np.ones(mu_vector.shape[0])
+    return generate_2d_gmm(num_data, mu_vector, variance)
+
+
 def generate_2d_gmm(num_data, mu_vector: np.array, variance_vector):
     """
 

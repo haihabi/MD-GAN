@@ -1,7 +1,6 @@
 # MD-GAN
 
 This repository contains PyTorch implementation of [MD-GAN](http://openaccess.thecvf.com/content_CVPR_2019/papers/Eghbal-zadeh_Mixture_Density_Generative_Adversarial_Networks_CVPR_2019_paper.pdf), along with notebook for training. 
-This repository is highly base on the following repositoy: https://github.com/eghbalz/mdgan
 
 The repository contains a [training notebook](examples/training_md_gan.ipynb) for a Mixture of Gaussion.
 # Contributing
