@@ -12,7 +12,7 @@ The trained model are located in this repository at the models folder.
 | 25 GMM | models/generator_25.pt | examples/training_md_gan_25_gaussions.ipynb  |
 | Two GMM  | models/generator_2.pt | examples/training_md_gan_two_gaussions.ipynb |
 
-Note: not all the code is commented, it's will be done in the near future.
+Note: this code is not well documented yet, this will be done in the near future.
 
 Example figures: 
 
