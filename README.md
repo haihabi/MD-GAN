@@ -1,4 +1,4 @@
-# MD-GAN
+# MD-GAN (Mixture Density Generative Adversarial Networks)
 
 This repository contains PyTorch implementation of [MD-GAN](http://openaccess.thecvf.com/content_CVPR_2019/papers/Eghbal-zadeh_Mixture_Density_Generative_Adversarial_Networks_CVPR_2019_paper.pdf), along with training iPython notebook and trained models. Currently, this repository contains the training of data generated from a Gaussian mixture model (GMM). Two trained models included in this repository: the first one trained on data of a grid of 5 x 5 mixture of Gaussian and the second model trained on data of two mixture of Gaussian which are centered at -5 and 5.
   
