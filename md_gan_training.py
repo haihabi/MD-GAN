@@ -41,7 +41,7 @@ class MDGANTraining(object):
             p.requires_grad = False  # they are set to False below in netG update
 
     def samples_noise(self):
-        return torch.randn(self.batch_size, self.z_size).to(self.working_device)
+        return 2 * torch.rand(self.batch_size, self.z_size).to(self.working_device) - 1
 
     def calculate_likelihood(self, data: torch.Tensor):
         e = self.net_d(data)
@@ -83,3 +83,10 @@ class MDGANTraining(object):
         g_loss.backward()
         self.optimizer_g.step()
         return g_loss.item()
+
+    def get_generator_function(self):
+        def func():
+            noise = self.samples_noise()
+            return self.net_g(noise)
+
+        return func

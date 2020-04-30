@@ -39,6 +39,12 @@ class FeedForwardSequential(nn.Module):
             layers_list.append(nn.Linear(layers_dim[i], layers_dim[i + 1]))
             layers_list.append(output_non_linear() if i == (len(layers_dim) - 2) else non_linear())
         self.layer_seq = nn.Sequential(*layers_list)
+        self.initialization()
+
+    def initialization(self):
+        for layer in self.layer_seq:
+            if isinstance(layer, nn.Linear):
+                torch.nn.init.normal_(layer.weight, mean=0, std=0.02)
 
     def forward(self, x):
         return self.layer_seq(x)

@@ -4,20 +4,36 @@ from dataclasses import dataclass
 
 
 def simplex_coordinates(m):
-    x = np.zeros([m, m + 1])  # Start with a zero matrix
-    np.fill_diagonal(x, 1.0)  # fill diagonal with ones
+    # This function is adopted from the Simplex Coordinates library
+    # https://people.sc.fsu.edu/~jburkardt/py_src/simplex_coordinates/simplex_coordinates.html
+    x = np.zeros([m, m + 1])
 
-    x[:, m] = (1.0 - np.sqrt(float(1 + m))) / float(m)  # fill the last column
+    for j in range(0, m):
+        x[j, j] = 1.0
 
-    c = np.sum(x, axis=1) / (m + 1)  # calculate each row mean
-    x = x - np.expand_dims(c, axis=1)  # subtract each row mean
+    a = (1.0 - np.sqrt(float(1 + m))) / float(m)
 
+    for i in range(0, m):
+        x[i, m] = a
+    c = np.zeros(m)
+    for i in range(0, m):
+        s = 0.0
+        for j in range(0, m + 1):
+            s = s + x[i, j]
+        c[i] = s / float(m + 1)
+
+    for j in range(0, m + 1):
+        for i in range(0, m):
+            x[i, j] = x[i, j] - c[i]
     s = 0.0
     for i in range(0, m):
         s = s + x[i, 0] ** 2
         s = np.sqrt(s)
 
-    return x / s
+    for j in range(0, m + 1):
+        for i in range(0, m):
+            x[i, j] = x[i, j] / s
+    return x
 
 
 def var2cov(bot_dim, ngmm):
@@ -45,7 +61,7 @@ def simplex_params(bot_dim: int, input_working_device: torch.device) -> Simplex:
     sigma_real = var2cov(bot_dim, ngmm).astype('float32')
     mu_real = np.array(mu_real_batch.T, dtype=np.float32)
     w_real = (np.ones((ngmm,)) / ngmm).astype('float32')
-    sigma_det_rsqrt = np.power(np.linalg.det(2 * np.pi * sigma_real), -0.5)
+    sigma_det_rsqrt = np.power(2 * np.pi * np.linalg.det(sigma_real), -0.5)
     sigma_inv = np.linalg.inv(sigma_real)
     ##########################################
     # Change to torch tensor
